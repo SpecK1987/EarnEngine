@@ -1,16 +1,17 @@
-// backend/server.js
-require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
 const app = express();
+const pool = require("./config/db");
 
-const authRoutes = require("./routes/authRoutes");
-const paymentRoutes = require("./routes/paymentRoutes");
+// your middleware
+// your routes
+// your other endpoints
 
-app.use(cors());
-app.use(express.json());
+// ✅ Add your test endpoints HERE (before app.listen)
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Backend is working!" });
+});
 
-apapp.get("/api/db-test", async (req, res) => {
+app.get("/api/db-test", async (req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
     res.json({
@@ -23,16 +24,9 @@ apapp.get("/api/db-test", async (req, res) => {
       error: err.message
     });
   }
-});p.get("/", (req, res) => {
-  res.json({ status: "EarnEngine backend running" });
 });
 
-app.use("/api/auth", authRoutes);
-app.use("/api/payments", paymentRoutes);
-
-// later: /api/downloads, /api/support, /api/users, etc.
-
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Backend listening on port ${PORT}`);
+// ❗ Must be at the very bottom
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Server running");
 });
