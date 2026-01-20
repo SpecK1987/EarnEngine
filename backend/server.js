@@ -10,7 +10,20 @@ const paymentRoutes = require("./routes/paymentRoutes");
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
+apapp.get("/api/db-test", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({
+      message: "Database connection successful!",
+      time: result.rows[0].now
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Database connection failed",
+      error: err.message
+    });
+  }
+});p.get("/", (req, res) => {
   res.json({ status: "EarnEngine backend running" });
 });
 
