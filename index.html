@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EarnEngine – Your Income System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="EarnEngine is a beginner-friendly platform that helps you start earning through side hustles, passive income tools, and simple investing." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #4f46e5;
+      --accent-soft: #6366f1;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --card: #111827;
+      --border: #1f2937;
+      --danger: #ef4444;
+      --success: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: conic-gradient(from 180deg, #4f46e5, #22c55e, #ec4899, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #0b1020;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 18px;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 40px);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 20px;
+      max-width: 480px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: white;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(79, 70, 229, 0.6);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1d2438, #020617);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .hero-pill {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .hero-pill-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-pill-value {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 520px;
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .list li {
+      margin-bottom: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .featured-links a {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: var(--accent-soft);
+    }
+
+    .featured-links a:hover {
+      text-decoration: underline;
+    }
+
+    .who-list {
+      list-style: none;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .who-list li {
+      margin-bottom: 4px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+      padding-top: 16px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      nav {
+        display: none;
+      }
+      .modules {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark">E</div>
+        <div class="logo-text">EarnEngine</div>
+      </div>
+      <nav>
+        <a href="#modules">Engines</a>
+        <a href="#how">How It Works</a>
+        <a href="#guides">Guides</a>
+        <a href="#who">Who It’s For</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <h1 class="hero-title">EarnEngine: Your Income System</h1>
+          <p class="hero-sub">
+            A simple, structured platform that helps beginners earn money through side hustles, passive income tools, and beginner‑friendly investing — all without spending a dollar.
+          </p>
+          <button class="hero-cta">
+            <span>Explore the EarnEngine System</span>
+          </button>
+          <div class="hero-tags">
+            <span class="tag">Zero‑cost side hustles</span>
+            <span class="tag">Passive income tools</span>
+            <span class="tag">Beginner investing</span>
+            <span class="tag">No experience required</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-title">Your first‑time earner dashboard</div>
+          <div class="hero-card-grid">
+            <div class="hero-pill">
+              <div class="hero-pill-label">Start with</div>
+              <div class="hero-pill-value">Side hustles or apps</div>
+            </div>
+            <div class="hero-pill">
+              <div class="hero-pill-label">Upfront cost</div>
+              <div class="hero-pill-value" style="color: var(--success);">$0 to begin</div>
+            </div>
+            <div class="hero-pill">
+              <div class="hero-pill-label">Skill level</div>
+              <div class="hero-pill-value">Total beginner</div>
+            </div>
+            <div class="hero-pill">
+              <div class="hero-pill-label">Payout methods</div>
+              <div class="hero-pill-value">Depends on each platform</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODULES -->
+      <section id="modules" class="section">
+        <h2 class="section-title">The EarnEngine Modules</h2>
+        <p class="section-sub">
+          EarnEngine breaks earning into three clear “engines” so you always know where to start and what to do next.
+        </p>
+        <div class="modules">
+          <div class="card">
+            <div class="badge"><span class="dot"></span> Hustle Engine</div>
+            <h3>Side Hustles for Beginners</h3>
+            <p>
+              Beginner‑friendly side hustles you can start today with $0. Step‑by‑step guides, realistic earning expectations, and simple tools.
+            </p>
+            <ul class="list">
+              <li>• No‑cost online and local hustles</li>
+              <li>• Phone‑based earning options</li>
+              <li>• Clear time and income breakdowns</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="badge"><span class="dot"></span> Passive Engine</div>
+            <h3>Passive Income Tools & Apps</h3>
+            <p>
+              Apps and tools that help you earn automatically with minimal effort. Perfect for beginners who want low‑maintenance income streams.
+            </p>
+            <ul class="list">
+              <li>• Cashback and rewards apps</li>
+              <li>• Micro‑investing and automation tools</li>
+              <li>• Platforms that handle payments for you</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="badge"><span class="dot"></span> Investing Engine</div>
+            <h3>Beginner Investing & Savings</h3>
+            <p>
+              Simple investing and savings guides designed for total beginners. Learn how to grow your money safely and steadily over time.
+            </p>
+            <ul class="list">
+              <li>• Micro‑investing with small amounts</li>
+              <li>• ETF and index fund basics</li>
+              <li>• Easy budgeting and savings frameworks</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how" class="section">
+        <h2 class="section-title">How EarnEngine Works</h2>
+        <p class="section-sub">
+          A clear, beginner‑friendly path to earning your first dollar online — without needing experience or upfront cash.
+        </p>
+        <div class="grid-2">
+          <div class="card">
+            <h3>1. Choose your engine</h3>
+            <p>
+              Start with side hustles, passive income tools, or beginner investing — whichever matches your current situation and comfort level.
+            </p>
+          </div>
+          <div class="card">
+            <h3>2. Follow the guided steps</h3>
+            <p>
+              Each guide is written for beginners and walks you through exactly what to do, which tools to use, and what to expect.
+            </p>
+          </div>
+          <div class="card">
+            <h3>3. Use trusted platforms</h3>
+            <p>
+              All earning happens through established third‑party platforms. They handle payments, and your visitors can use any payment method those platforms support.
+            </p>
+          </div>
+          <div class="card">
+            <h3>4. Grow over time</h3>
+            <p>
+              Start small, then stack side hustles, tools, and investing habits into a long‑term income system.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED GUIDES -->
+      <section id="guides" class="section">
+        <h2 class="section-title">Start With These Popular Guides</h2>
+        <p class="section-sub">
+          These beginner‑friendly guides are designed to help you take action today — not “someday.”
+        </p>
+        <div class="grid-2">
+          <div class="card featured-links">
+            <h3>Side Hustles</h3>
+            <a href="#">10 Side Hustles You Can Start Today With $0</a>
+            <a href="#">Fast Ways to Earn Your First $50 Online</a>
+            <a href="#">Side Hustles You Can Do From Your Phone</a>
+            <a href="#">Beginner Side Hustles That Don’t Require Skills</a>
+            <a href="#">How to Choose the Right Side Hustle for You</a>
+          </div>
+          <div class="card featured-links">
+            <h3>Passive Income & Investing</h3>
+            <a href="#">Best Passive Income Apps for Beginners (2026 Edition)</a>
+            <a href="#">Apps That Earn Money Automatically While You Sleep</a>
+            <a href="#">Top Cashback & Rewards Apps That Actually Pay</a>
+            <a href="#">How to Start Investing With Just $5</a>
+            <a href="#">The 50/30/20 Budget Rule Explained Simply</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO IT'S FOR -->
+      <section id="who" class="section">
+        <h2 class="section-title">Who EarnEngine Is For</h2>
+        <p class="section-sub">
+          EarnEngine is built for real people starting from real situations — not for experts, not for gurus.
+        </p>
+        <ul class="who-list">
+          <li>• People starting from zero who want a clear path to earning.</li>
+          <li>• Anyone who wants to earn without spending money upfront.</li>
+          <li>• Beginners who want step‑by‑step guidance instead of vague advice.</li>
+          <li>• People who prefer realistic, sustainable earning methods over hype.</li>
+          <li>• Anyone who wants to build long‑term financial confidence over time.</li>
+        </ul>
+      </section>
+
+      <!-- CONTACT / CTA -->
+      <section id="contact" class="section">
+        <h2 class="section-title">Stay Connected With EarnEngine</h2>
+        <p class="section-sub">
+          As EarnEngine grows, new guides, tools, and systems will be added to help beginners earn smarter. You can plug into the system early.
+        </p>
+        <div class="card">
+          <h3>Get future updates</h3>
+          <p style="font-size: 13px; color: var(--muted); margin-bottom: 10px;">
+            You can later connect this section to an email list or contact form. For now, you can keep it simple with a note or a basic email link.
+          </p>
+          <p style="font-size: 13px;">
+            Example: <a href="mailto:youremail@example.com" style="color: var(--accent-soft);">youremail@example.com</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> EarnEngine. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy Policy</a> ·
+        <a href="#">Terms</a> ·
+        <a href="#">Affiliate Disclosure</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

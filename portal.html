@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EarnEngine Portal</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="paypal-button-container"></div>
+
+  <h1>EarnEngine Portal</h1>
+  <p>Log in, create an account, or submit support requests.</p>
+
+  <div class="card">
+    <h2>Log In</h2>
+    <input id="login-email" type="email" placeholder="Email">
+    <input id="login-password" type="password" placeholder="Password">
+    <button onclick="login(
+      document.getElementById('login-email').value,
+      document.getElementById('login-password').value
+    )">Log In</button>
+  </div>
+
+  <div class="card">
+    <h2>Create Account</h2>
+    <input id="reg-email" type="email" placeholder="Email">
+    <input id="reg-password" type="password" placeholder="Password">
+    <button onclick="register(
+      document.getElementById('reg-email').value,
+      document.getElementById('reg-password').value
+    )">Create Account</button>
+  </div>
+
+  <div class="card">
+    <h2>Support Request</h2>
+    <input type="text" placeholder="Subject">
+    <textarea rows="4" placeholder="Describe your issue..."></textarea>
+    <button>Submit (Future Feature)</button>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

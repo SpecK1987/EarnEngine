@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EarnEngine Members Area</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+</head>
+<body>
+
+  <h1>Members Area</h1>
+  <p>Exclusive downloads for paid members.</p>
+
+  <div class="notice">
+    This content is locked. Complete payment to unlock downloads.
+  </div>
+
+  <button onclick="createPayPalOrder()">Upgrade to Pro (PayPal)</button>
+<div id="paypal-button-container"></div>
+  <h2 style="margin-top:20px;">Premium Downloads</h2>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <h3>Side Hustle Tracker</h3>
+      <p>Spreadsheet to track income and ROI.</p>
+      <button disabled>Locked</button>
+    </div>
+
+    <div class="card">
+      <h3>EarnEngine Playbook</h3>
+      <p>Full beginner roadmap PDF.</p>
+      <button disabled>Locked</button>
+    </div>
+
+    <div class="card">
+      <h3>Passive Income Idea Generator</h3>
+      <p>Tool to help you choose income streams.</p>
+      <button disabled>Locked</button>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+  paypal.Buttons({
+    createOrder: async function() {
+      const token = localStorage.getItem("ee_token");
+      const res = await fetch(`${API_BASE}/api/payments/create-order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await res.json();
+      return data.id; // PayPal order ID
+    },
+    
+    onApprove: async function(data) {
+      const token = localStorage.getItem("ee_token");
+      const res = await fetch(`${API_BASE}/api/payments/capture-order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ orderId: data.orderID })
+      });
+      
+      const result = await res.json();
+      alert("Payment completed! Your account is now upgraded.");
+      window.location.reload();
+    }
+  }).render("#paypal-button-container");
+</script>
+</body>
+</html>
