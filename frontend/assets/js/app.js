@@ -1,6 +1,6 @@
 /* EarnEngine Frontend Logic */
 
-const API_BASE = "https://YOUR_BACKEND_URL.onrender.com"; // replace after deployment
+const API_BASE = "https://earnengine.onrender.com"; // replace after deployment
 
 // Save token
 function saveToken(token) {
