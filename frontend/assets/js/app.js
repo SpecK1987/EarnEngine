@@ -1,7 +1,7 @@
 // ===============================
 // CONFIG
 // ===============================
-const API_BASE = "https://YOUR-BACKEND-URL.onrender.com"; // <-- change this
+const API_BASE = "https://earnengine.onrender.com"; // <-- change this
 
 // ===============================
 // AUTH HELPERS
